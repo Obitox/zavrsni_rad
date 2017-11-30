@@ -1,0 +1,25 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete</title>
+</head>
+<body>
+<!--/*@thymesVar id="lista" type="controller.MainController"*/-->
+<form th:method="delete" th:each="student : ${lista}">
+        <input type="number" th:name="id" th:value="${student.student_id}">
+        <button type="submit">Delete user</button>
+</form>
+<div class="container">
+    <div class="row">
+        <!--/*@thymesVar id="lista" type="controller.MainController"*/-->
+        <div class="col-md-6 col-md-offset-3" th:each="student:${lista}">
+            <p th:text="${student.student_id}"></p>
+            <h2 th:text="${student.korisnicko_ime}"></h2>
+            <h2 th:text="${student.ime}"></h2>
+            <h2 th:text="${student.prezime}"></h2>
+        </div>
+    </div>
+</div>
+</body>
+</html>

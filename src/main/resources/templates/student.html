@@ -1,0 +1,27 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" type="text/css" th:href="@{css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{css/bootstrap-theme.min.css}">
+    <link rel="stylesheet" th:href="@{css/students.css}">
+    <title>Students</title>
+</head>
+<body>
+    <section class="logo">
+        <img th:src="@{img/35785-200.png}" alt="logo">
+    </section>
+    <div class="container">
+        <div class="row">
+            <!--/*@thymesVar id="lista" type="controller.MainController"*/-->
+            <div class="col-md-6 col-md-offset-3 student" th:each="student:${lista}">
+                <img th:src="${student.korisnik_slika}" class="img-circle img-responsive img-student" alt="student" height="50%" width="35%">
+                <h2 th:text="${student.ime}"></h2>
+                <h2 th:text="${student.prezime}"></h2>
+            </div>
+        </div>
+    </div>
+<script th:src="@{js/jquery-3.2.1.min.js}"></script>
+<script th:src="@{js/bootstrap.min.js}"></script>
+</body>
+</html>

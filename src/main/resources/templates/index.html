@@ -1,0 +1,24 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" th:href="@{css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{css/bootstrap-theme.min.css}">
+    <link rel="stylesheet" th:href="@{css/index.css}">
+    <title>Index</title>
+</head>
+<body>
+    <section class="logo">
+        <a th:href="index"><img th:src="@{img/restful-api-image.png}"></a>
+    </section>
+    <nav class="navigation">
+        <ul class="nav nav-pills nav-stacked">
+            <li role="presentation" class="active"><a th:href="student">Students</a></li>
+            <li role="presentation"><a th:href="create">Teachers</a></li>
+            <li role="presentation"><a href="#">Courses</a></li>
+        </ul>
+    </nav>
+<script th:src="@{js/jquery-3.2.1.min.js}"></script>
+<script th:src="@{js/bootstrap.min.js}"></script>
+</body>
+</html>

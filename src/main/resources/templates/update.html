@@ -1,0 +1,18 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Post</title>
+</head>
+<body>
+<!--/*@thymesVar id="student" type="model.Student"*/-->
+<form th:action="@{create/createStudent}" th:object="student" method="post">
+    <input type="text" th:name="korisnicko_ime" placeholder="korisnicko ime" />
+    <input type="password" th:name="lozinka" placeholder="lozinka"/>
+    <input type="text" th:name="ime" placeholder="ime"/>
+    <input type="text" th:name="prezime" placeholder="prezime"/>
+    <input type="text" th:name="indeks" placeholder="indeks"/>
+    <input type="submit"/>
+</form>
+</body>
+</html>
