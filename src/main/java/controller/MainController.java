@@ -19,8 +19,6 @@ public class MainController {
 
         ThymeleafTemplateEngine thymeleafTemplateEngine = new ThymeleafTemplateEngine();
 
-        String url = "/delete/:id";
-
         StudentService studentService = new StudentService();
 
         Map<String, List<Student>> map = new HashMap();
@@ -34,9 +32,6 @@ public class MainController {
                     new ModelAndView(map, "student")
             );
         });
-        get("/delete", (rq, rs) -> {
-            map.put("lista", studentService.getAllStudents());
-            return thymeleafTemplateEngine.render(new ModelAndView(map, "delete"));});
         post("/create/createStudent", (rq, rs) ->
                 {
                     String korisnicko_ime = rq.queryParams("korisnicko_ime");
@@ -48,9 +43,22 @@ public class MainController {
                     return "Korisnik uspesno unet u bazu.";
                 }
         );
-        delete(url, (rq, rs) -> {
-           studentService.deleteStudent(rq.params(":id"));
-           return " Selected user:" + rq.params(":id");
+        delete("/delete/deleteStudent", (rq, rs) -> {
+           studentService.deleteStudent(rq.queryParams("id"));
+           map.put("lista", studentService.getAllStudents());
+           return thymeleafTemplateEngine.render(new ModelAndView(map, "delete"));
+        });
+        get("/update", (rq, rs) -> {
+            map.put("lista",studentService.getAllStudents());
+            return thymeleafTemplateEngine.render(
+                    new ModelAndView(map, "update")
+            );
+        });
+        put("/update", (rq, rs) -> {
+            map.put("lista",studentService.getAllStudents());
+            return thymeleafTemplateEngine.render(
+                    new ModelAndView(map, "update")
+            );
         });
     }
 }

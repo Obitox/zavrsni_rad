@@ -60,6 +60,7 @@ public class StudentService {
     }
 
     public void deleteStudent(String id){
+        System.out.println("Delete Called");
         sql = "DELETE FROM student WHERE student_id="+id;
         con = ConnectionManager.getConnection();
         try{
@@ -68,6 +69,10 @@ public class StudentService {
         } catch (SQLException e){
             e.printStackTrace();
         }
+    }
+
+    public void updateStudnet(String korisnicko_ime, String lozinka, String ime, String prezime, String indeks, String korisnik_slika){
+        
     }
 
 }

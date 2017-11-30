@@ -5,9 +5,8 @@
     <title>Delete</title>
 </head>
 <body>
-<!--/*@thymesVar id="lista" type="controller.MainController"*/-->
-<form th:method="delete" th:each="student : ${lista}">
-        <input type="number" th:name="id" th:value="${student.student_id}">
+<form th:method="delete" th:action="@{delete/deleteStudent}">
+        <input type="number" th:name="id">
         <button type="submit">Delete user</button>
 </form>
 <div class="container">
