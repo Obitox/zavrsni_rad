@@ -6,7 +6,7 @@
 </head>
 <body>
 <!--/*@thymesVar id="student" type="model.Student"*/-->
-<form th:action="@{create/createStudent}" th:method="put" th:each="student:${lista}">
+<form th:method="post" th:each="student:${lista}">
     <input type="text" th:name="korisnicko_ime" th:value="${student.korisnicko_ime}"  placeholder="korisnicko ime" />
     <input type="password" th:name="lozinka" th:value="${student.lozinka}" placeholder="lozinka"/>
     <input type="text" th:name="ime" th:value="${student.ime}" placeholder="ime"/>

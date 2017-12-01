@@ -1,14 +1,9 @@
 package service;
 
-import com.mysql.cj.jdbc.ConnectionGroupManager;
-import com.mysql.cj.jdbc.PreparedStatement;
 import database.ConnectionManager;
 import model.Student;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,6 +11,7 @@ public class StudentService {
     private Statement stmt = null;
     private Connection con = null;
     private ResultSet rs = null;
+    private CallableStatement cStmt = null;
     private String sql = "";
     private ArrayList<Student> listOfAllStudents;
 
@@ -71,8 +67,23 @@ public class StudentService {
         }
     }
 
-    public void updateStudnet(String korisnicko_ime, String lozinka, String ime, String prezime, String indeks, String korisnik_slika){
-        
+    public void updateStudent(String korisnicko_ime, String lozinka, String ime, String prezime, String indeks, String korisnik_slika){
+        con = ConnectionManager.getConnection();
+        System.out.println("Izvrsen update");
+        try {
+            cStmt = con.prepareCall("{call student_update(?, ?, ?, ?, ?, ?)}");
+            cStmt.setString(1, korisnicko_ime);
+            cStmt.setString(2, lozinka);
+            cStmt.setString(3, ime);
+            cStmt.setString(4, prezime);
+            cStmt.setString(5, indeks);
+            cStmt.setString(6, korisnik_slika);
+            cStmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
     }
 
 }

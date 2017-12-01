@@ -55,6 +55,13 @@ public class MainController {
             );
         });
         put("/update", (rq, rs) -> {
+            String korisnicko_ime = rq.queryParams("korisnicko_ime");
+            String lozinka = rq.queryParams("lozinka");
+            String ime = rq.queryParams("ime");
+            String prezime = rq.queryParams("prezime");
+            String indeks = rq.queryParams("indeks");
+            System.out.println(korisnicko_ime + " " + lozinka);
+            studentService.updateStudent(korisnicko_ime, lozinka, ime, prezime, indeks, "img/default.png");
             map.put("lista",studentService.getAllStudents());
             return thymeleafTemplateEngine.render(
                     new ModelAndView(map, "update")
