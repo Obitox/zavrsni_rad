@@ -4,15 +4,19 @@
     <meta charset="UTF-8">
     <title>Post</title>
 </head>
-<body>
+<body ng-controller="testController" ng-app="App">
 <!--/*@thymesVar id="student" type="model.Student"*/-->
-<form th:method="post" th:each="student:${lista}">
-    <input type="text" th:name="korisnicko_ime" th:value="${student.korisnicko_ime}"  placeholder="korisnicko ime" />
-    <input type="password" th:name="lozinka" th:value="${student.lozinka}" placeholder="lozinka"/>
-    <input type="text" th:name="ime" th:value="${student.ime}" placeholder="ime"/>
-    <input type="text" th:name="prezime" th:value="${student.prezime}" placeholder="prezime"/>
-    <input type="text" th:name="indeks" th:value="${student.indeks}" placeholder="indeks"/>
-    <input type="submit"/>
+<form th:each="student : ${lista}">
+    <input type="text" id="korisnicko_ime" th:value="${lista[0].korisnicko_ime}" placeholder="korisnicko ime" />
+    <input type="password" id="lozinka" th:value="${lista[0].lozinka}" placeholder="lozinka"/>
+    <input type="text" id="ime" th:value="${lista[0].ime}" placeholder="ime"/>
+    <input type="text" id="prezime" th:value="${lista[0].prezime}" placeholder="prezime"/>
+    <input type="text" id="indeks" th:value="${lista[0].indeks}" placeholder="indeks"/>
+    <input type="submit" ng-click="update()"/>
 </form>
+<script type="text/javascript" th:src="@{css/angular-1.6.6/angular.js}"></script>
+<script type="text/javascript" th:href="@{css/angular-1.6.6/angular.min.js}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script type="text/javascript" th:src="@{js/registration.js}"></script>
 </body>
 </html>

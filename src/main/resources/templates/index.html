@@ -2,23 +2,32 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" th:href="@{css/bootstrap.min.css}">
-    <link rel="stylesheet" th:href="@{css/bootstrap-theme.min.css}">
-    <link rel="stylesheet" th:href="@{css/index.css}">
-    <title>Index</title>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <title>CRUD</title>
 </head>
-<body>
-    <section class="logo">
-        <a th:href="index"><img th:src="@{img/restful-api-image.png}"></a>
-    </section>
-    <nav class="navigation">
-        <ul class="nav nav-pills nav-stacked">
-            <li role="presentation" class="active"><a th:href="student">Students</a></li>
-            <li role="presentation"><a th:href="create">Teachers</a></li>
-            <li role="presentation"><a href="#">Courses</a></li>
-        </ul>
-    </nav>
-<script th:src="@{js/jquery-3.2.1.min.js}"></script>
-<script th:src="@{js/bootstrap.min.js}"></script>
+<body ng-app="App" ng-controller="testController">
+    <div class="container">
+        <p class="login-heading">
+            CRUD APPLICATION
+        </p>
+        <div class="login-box">
+            <input class="username" id="username" type="text" name="username" placeholder="Username">
+            <input class="password" id="password" type="password" name="password" placeholder="Password">
+            <button class="login" name="btn-login" ng-click="login()">
+                Login
+            </button>
+            <button  class="sign-up" name="btn-signup">
+                Sign up
+            </button>
+        </div>
+        <p class="login-footer">
+            Simple crud application for students
+        </p>
+    </div>
+    <script src="js/angular.js"></script>
+    <script src="js/jquery-3.3.1.js"></script>
+    <script src="js/index.js"></script>
 </body>
 </html>

@@ -5,10 +5,9 @@ import model.Student;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.List;
 
 public class StudentService {
-    private Statement stmt = null;
+    private PreparedStatement stmt = null;
     private Connection con = null;
     private ResultSet rs = null;
     private CallableStatement cStmt = null;
@@ -19,7 +18,7 @@ public class StudentService {
         listOfAllStudents = new ArrayList<>();
     }
 
-    public ArrayList<Student> getAllStudents(){
+    public ArrayList<Student> retrieveStudents(){
         listOfAllStudents.clear();
         sql = "SELECT * FROM student";
         con = ConnectionManager.getConnection();
@@ -28,13 +27,13 @@ public class StudentService {
             rs = stmt.executeQuery(sql);
             while(rs.next()){
                 int student_id = rs.getInt("student_id");
-                String korisnicko_ime = rs.getString("korisnicko_ime");
-                String lozinka = rs.getString("lozinka");
-                String ime = rs.getString("ime");
-                String prezime = rs.getString("prezime");
-                String indeks = rs.getString("indeks");
-                String korisnik_slika = rs.getString("korisnik_slika");
-                listOfAllStudents.add(new Student(student_id, korisnicko_ime, lozinka, ime, prezime, indeks, korisnik_slika));
+                String username = rs.getString("username");
+                String password = rs.getString("password");
+                String email = rs.getString("email");
+                String jmbg = rs.getString("jmbg");
+                String fullname = rs.getString("fullname");
+                String index = rs.getString("index");
+                listOfAllStudents.add(new Student(student_id, username, password, email, jmbg, fullname, index));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -42,48 +41,85 @@ public class StudentService {
         return listOfAllStudents;
     }
 
-    public List<Student> createStudent(String korisnicko_ime, String lozinka, String ime, String prezime, String indeks, String korisnik_slika){
-        sql = "INSERT INTO student(korisnicko_ime, lozinka, ime, prezime, indeks, korisnik_slika) " +
-                "VALUES ('" +korisnicko_ime+"','"+lozinka+"','"+ime+"','"+prezime+"','"+indeks+"','"+korisnik_slika+"')";
-        con = ConnectionManager.getConnection();
-        try {
-            stmt = con.createStatement();
-            stmt.executeUpdate(sql);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return listOfAllStudents;
-    }
 
-    public void deleteStudent(String id){
-        System.out.println("Delete Called");
-        sql = "DELETE FROM student WHERE student_id="+id;
+    public String deleteStudent(int id){
+        System.out.println("id: "+id);
+        sql = "DELETE FROM student WHERE student_id=?";
         con = ConnectionManager.getConnection();
         try{
-            stmt = con.createStatement();
-            stmt.executeUpdate(sql);
+            stmt = con.prepareStatement(sql);
+            stmt.setInt(1, id);
+            int rowsUpdated = stmt.executeUpdate();
+            if(rowsUpdated == 1){
+                return "Student has been succesfully deleted!";
+            }
         } catch (SQLException e){
             e.printStackTrace();
         }
+        return "Student has not been deleted!";
     }
 
-    public void updateStudent(String korisnicko_ime, String lozinka, String ime, String prezime, String indeks, String korisnik_slika){
+    public String updateStudent(int student_id ,String username, String password, String email, String jmbg, String fullname, String index){
+        System.out.println("ID: " + student_id);
         con = ConnectionManager.getConnection();
         System.out.println("Izvrsen update");
         try {
-            cStmt = con.prepareCall("{call student_update(?, ?, ?, ?, ?, ?)}");
-            cStmt.setString(1, korisnicko_ime);
-            cStmt.setString(2, lozinka);
-            cStmt.setString(3, ime);
-            cStmt.setString(4, prezime);
-            cStmt.setString(5, indeks);
-            cStmt.setString(6, korisnik_slika);
-            cStmt.executeUpdate();
+            cStmt = con.prepareCall("{call updateStudent_sp(? ,?, ?, ?, ?, ?, ?)}");
+            cStmt.setInt(1, student_id);
+            cStmt.setString(2, username);
+            cStmt.setString(3, password);
+            cStmt.setString(4, email);
+            cStmt.setString(5, jmbg);
+            cStmt.setString(6, fullname);
+            cStmt.setString(7, index);
+            int rowsUpdated = cStmt.executeUpdate();
+            if(rowsUpdated == 1){
+               return "Student has been succesfully updated!";
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-
+        return "Student has not been updated";
     }
+
+    public String studentRegistration(String username, String password, String email, String jmbg, String fullname, String index){
+        con = ConnectionManager.getConnection();
+        try {
+            cStmt = con.prepareCall("{CALL createStudent_sp(?, ?, ?, ?, ?, ?)}");
+            cStmt.setString(1, username);
+            cStmt.setString(2, password);
+            cStmt.setString(3, email);
+            cStmt.setString(4, jmbg);
+            cStmt.setString(5, fullname);
+            cStmt.setString(6, index);
+            int rowsUpdated = cStmt.executeUpdate();
+            if(rowsUpdated == 1) {
+                return "Successful";
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return "Student already exists in a database";
+    }
+
+    public String studentLogin(String username, String password){
+        con = ConnectionManager.getConnection();
+        try{
+            cStmt=con.prepareCall ("{ CALL loginStudent_sp(?, ?, ?) }");
+            cStmt.setString(1,username);
+            cStmt.setString(2, password);
+            cStmt.registerOutParameter (3, Types.TINYINT);
+            cStmt.executeUpdate();
+            if(cStmt.getInt (3) == 1){
+                return "Success";
+            }
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return "Failed";
+    }
+
+
 
 }

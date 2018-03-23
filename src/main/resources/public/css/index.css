@@ -1,9 +1,42 @@
-.logo {
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    display: grid;
+    background-color: #0f1a60;
+
+}
+
+.container {
+    margin: auto;
+    display: grid;
+    grid-template: repeat(3, 1fr)/repeat(1, 1fr);
+}
+
+.login-heading {
+    color: #fff;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 35px;
     text-align: center;
 }
 
-.navigation {
-    background-color: #ebff77;
-    margin: 0 300px;
+.login-box {
+    display: grid;
+    grid-template: repeat(3, 1fr)/repeat(2, 1fr);
+    grid-gap: 10px;
+}
+
+.username {
+    grid-area: 1 / 1 / 2 / span 2;
+}
+
+.password {
+    grid-area: 2 / 1 / 3 / span 2;
+}
+
+.login-footer {
+    color: #fff;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 35px;
     text-align: center;
 }
