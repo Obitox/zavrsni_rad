@@ -1,0 +1,22 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    display: grid;
+}
+
+.container {
+    margin: auto;
+    display: grid;
+    grid-template: repeat(2, 1fr)/repeat(1, 1fr);
+    grid-gap: 2px;
+}
+
+.heading {
+    align-self: center;
+    text-align: center;
+}
+
+.list {
+    align-self: center;
+}

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+        <link rel="stylesheet" href="css/admin.css">
+    </head>
+    <body ng-app="App" ng-controller="testController">
+        <div class="container">
+            <p class="heading">
+                HEADING
+            </p>
+            <div class="main-table">
+                <table>
+                    <tr>
+                        <th></th>
+                        <th>Username</th>
+                        <th>Password</th>
+                        <th>Email</th>
+                        <th>JMBG</th>
+                        <th>Fullname</th>
+                        <th>Index</th>
+                        <th>Option</th>
+                    </tr>
+                    <tr ng-repeat="student in list track by $index">
+                        <td><input type="hidden" ng-value="student.student_id" id="student_id"></td>
+                        <td><input type="text" ng-value="student.username" id="username"></td>
+                        <td><input type="text" ng-value="student.password" id="password"></td>
+                        <td><input type="text" ng-value="student.email" id="email"></td>
+                        <td><input type="text" ng-value="student.jmbg" id="jmbg"></td>
+                        <td><input type="text" ng-value="student.fullname" id="fullname"></td>
+                        <td><input type="text" ng-value="student.index" id="index"></td>
+                        <td><button ng-click="updateStudent()">Update</button><button ng-click="deleteStudent(student.student_id)">Delete</button></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="create-table">
+                <table>
+                    <tr>
+                        <th>Username</th>
+                        <th>Password</th>
+                        <th>Email</th>
+                        <th>JMBG</th>
+                        <th>Fullname</th>
+                        <th>Index</th>
+                        <th>Option</th>
+                    </tr>
+                    <tr>
+                        <td><input type="text" id="username_create"></td>
+                        <td><input type="text" id="password_create"></td>
+                        <td><input type="text" id="email_create"></td>
+                        <td><input type="text" id="jmbg_create"></td>
+                        <td><input type="text" id="fullname_create"></td>
+                        <td><input type="text" id="index_create"></td>
+                        <td><button ng-click="createStudent()">CREATE</button></td>
+                    </tr>
+                </table>
+            </div>
+            <button type="submit" ng-click="options()">Get Options</button>
+        </div>
+        <script src="js/angular.js"></script>
+        <script src="js/jquery-3.3.1.js"></script>
+        <script src="js/panel.js"></script>
+    </body>
+</html>

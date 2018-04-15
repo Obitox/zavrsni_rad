@@ -1,0 +1,28 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    display: grid;
+    background-color: #0f1a60;
+}
+
+.container {
+    margin: auto;
+    display: grid;
+    grid-template: repeat(2, 1fr)/repeat(1, 1fr);
+    grid-gap: 10px;
+    grid-template-rows: auto;
+}
+
+.heading {
+    color: #fff;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 35px;
+    align-self: center;
+}
+
+.signup {
+    display: grid;
+    grid-template: repeat(7, 1fr)/repeat(1, 1fr);
+    grid-gap: 10px;
+}
