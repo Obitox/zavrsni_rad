@@ -10,28 +10,32 @@
                 HEADING
             </p>
             <div class="main-table">
-                <table>
-                    <tr>
-                        <th></th>
-                        <th>Username</th>
-                        <th>Password</th>
-                        <th>Email</th>
-                        <th>JMBG</th>
-                        <th>Fullname</th>
-                        <th>Index</th>
-                        <th>Option</th>
-                    </tr>
-                    <tr ng-repeat="student in list track by $index">
-                        <td><input type="hidden" ng-value="student.student_id" id="student_id"></td>
-                        <td><input type="text" ng-value="student.username" id="username"></td>
-                        <td><input type="text" ng-value="student.password" id="password"></td>
-                        <td><input type="text" ng-value="student.email" id="email"></td>
-                        <td><input type="text" ng-value="student.jmbg" id="jmbg"></td>
-                        <td><input type="text" ng-value="student.fullname" id="fullname"></td>
-                        <td><input type="text" ng-value="student.index" id="index"></td>
-                        <td><button ng-click="updateStudent()">Update</button><button ng-click="deleteStudent(student.student_id)">Delete</button></td>
-                    </tr>
-                </table>
+                <form>
+                    <table>
+                        <tr>
+                            <th></th>
+                            <th>Username</th>
+                            <th>Password</th>
+                            <th>Email</th>
+                            <th>JMBG</th>
+                            <th>Fullname</th>
+                            <th>Index</th>
+                            <th>Address</th>
+                            <th>Option</th>
+                        </tr>
+                        <tr ng-repeat="student in list track by $index">
+                            <td><input type="hidden" ng-value="student.student_id" id="student_id" ng-model="student.student_id"></td>
+                            <td><input type="text" ng-value="student.username" id="username" ng-model="student.username"></td>
+                            <td><input type="text" ng-value="student.password" id="password" ng-model="student.password" ></td>
+                            <td><input type="text" ng-value="student.email" id="email" ng-model="student.email"></td>
+                            <td><input type="text" ng-value="student.jmbg" id="jmbg" ng-model="student.jmbg"></td>
+                            <td><input type="text" ng-value="student.fullname" id="fullname" ng-model="student.fullname"></td>
+                            <td><input type="text" ng-value="student.index" id="index" ng-model="student.index"></td>
+                            <td><input type="text" ng-value="student.address" id="address" ng-model="student.address"></td>
+                            <td><button ng-click="updateStudent(student.student_id, student.username, student.password, student.email, student.jmbg, student.fullname, student.index, student.address)">Update</button><button ng-click="deleteStudent(student.student_id)">Delete</button></td>
+                        </tr>
+                    </table>
+                </form>
             </div>
             <div class="create-table">
                 <table>
@@ -42,6 +46,7 @@
                         <th>JMBG</th>
                         <th>Fullname</th>
                         <th>Index</th>
+                        <th>Address</th>
                         <th>Option</th>
                     </tr>
                     <tr>
@@ -51,6 +56,7 @@
                         <td><input type="text" id="jmbg_create"></td>
                         <td><input type="text" id="fullname_create"></td>
                         <td><input type="text" id="index_create"></td>
+                        <td><input type="text" id="address_create"></td>
                         <td><button ng-click="createStudent()">CREATE</button></td>
                     </tr>
                 </table>

@@ -13,4 +13,5 @@ public class Student {
     private String jmbg;
     private String fullname;
     private String index;
+    private String address;
 }

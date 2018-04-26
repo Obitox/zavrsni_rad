@@ -1,5 +1,5 @@
-<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="css/registration.css">
@@ -9,13 +9,14 @@
     <div class="container">
         <p class="heading">Enter your data in fitting boxes</p>
         <form class="signup">
-            <input class="username" type="text" ng-model="username" placeholder="Username">
-            <input class="password" type="password" ng-model="password" placeholder="Password">
-            <input class="email" type="email" ng-model="email" placeholder="Email in format example@crud.rs">
-            <input class="jmbg" type="text" ng-model="jmbg" placeholder="JMBG">
-            <input class="fullname" type="text" ng-model="fullname" placeholder="Full name">
-            <input class="index" type="text" ng-model="index" placeholder="Index">
-            <button class="btn-signup" type="submit" name="signup" ng-click="signup()">Submit</button>
+            <input class="username" type="text" id="username" ng-model="admin.username" placeholder="Username">
+            <input class="password" type="password" id="password" ng-model="admin.password" placeholder="Password">
+            <input class="fullname" type="text" id="fullname" ng-model="admin.fullname" placeholder="Full name">
+            <input class="jmbg" type="text" id="jmbg" ng-model="admin.jmbg" placeholder="JMBG">
+            <input class="address" type="text" id="address" ng-model="admin.address" placeholder="Address">
+            <input class="email" type="email" id="email" ng-model="admin.email" placeholder="Email in format example@crud.rs">
+            <input class="phone" type="text" id="phone" ng-model="admin.phone" placeholder="Phone number">
+            <button class="btn-signup" type="submit" name="signup" ng-click="signup(admin.username, admin.password, admin.fullname, admin.jmbg, admin.address, admin.email, admin.phone)">Submit</button>
         </form>
     </div>
     <script src="js/angular.js"></script>

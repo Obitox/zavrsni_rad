@@ -1,6 +1,7 @@
 import controller.LoginController;
 import controller.PanelController;
 import controller.RegistrationController;
+import spark.utils.SparkUtils;
 
 import static spark.Spark.staticFileLocation;
 
