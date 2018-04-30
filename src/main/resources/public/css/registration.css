@@ -3,10 +3,9 @@ body, html {
     padding: 0;
     height: 100%;
     display: grid;
-    background-color: #0f1a60;
 }
 
-.container {
+.wrapper {
     margin: auto;
     display: grid;
     grid-template: repeat(2, 1fr)/repeat(1, 1fr);
@@ -14,8 +13,7 @@ body, html {
     grid-template-rows: auto;
 }
 
-.heading {
-    color: #fff;
+.wrapper h1 {
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     font-size: 35px;
     align-self: center;

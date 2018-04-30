@@ -15,20 +15,5 @@ public class UserService {
         this.con = ConnectionManager.getConnection();
     }
 
-    public String userLogin(String username, String password){
-        con = ConnectionManager.getConnection();
-        try{
-            cStmt=con.prepareCall ("{ CALL loginUser_sp(?, ?, ?) }");
-            cStmt.setString(1,username);
-            cStmt.setString(2, password);
-            cStmt.registerOutParameter (3, Types.TINYINT);
-            cStmt.executeUpdate();
-            if(cStmt.getInt (3) == 1){
-                return "Success";
-            }
-        } catch (SQLException e){
-            e.printStackTrace();
-        }
-        return "Failed";
-    }
+
 }

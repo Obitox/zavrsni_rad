@@ -2,21 +2,22 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/bootstrap-4.1.0-dist/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="css/registration.css">
     <title>Registration</title>
 </head>
 <body ng-app="App" ng-controller="testController">
-    <div class="container">
-        <p class="heading">Enter your data in fitting boxes</p>
+    <div class="wrapper">
+        <h1 class="heading">Enter your data in fitting boxes</h1>
         <form class="signup">
-            <input class="username" type="text" id="username" ng-model="admin.username" placeholder="Username">
-            <input class="password" type="password" id="password" ng-model="admin.password" placeholder="Password">
-            <input class="fullname" type="text" id="fullname" ng-model="admin.fullname" placeholder="Full name">
-            <input class="jmbg" type="text" id="jmbg" ng-model="admin.jmbg" placeholder="JMBG">
-            <input class="address" type="text" id="address" ng-model="admin.address" placeholder="Address">
-            <input class="email" type="email" id="email" ng-model="admin.email" placeholder="Email in format example@crud.rs">
-            <input class="phone" type="text" id="phone" ng-model="admin.phone" placeholder="Phone number">
-            <button class="btn-signup" type="submit" name="signup" ng-click="signup(admin.username, admin.password, admin.fullname, admin.jmbg, admin.address, admin.email, admin.phone)">Submit</button>
+            <input class="form-control" type="text" id="username" ng-model="admin.username" placeholder="Username">
+            <input class="form-control" type="password" id="password" ng-model="admin.password" placeholder="Password">
+            <input class="form-control" type="text" id="fullname" ng-model="admin.fullname" placeholder="Full name">
+            <input class="form-control" type="text" id="jmbg" ng-model="admin.jmbg" placeholder="JMBG">
+            <input class="form-control" type="text" id="address" ng-model="admin.address" placeholder="Address">
+            <input class="form-control" type="email" id="email" ng-model="admin.email" placeholder="Email in format example@crud.rs">
+            <input class="form-control" type="text" id="phone" ng-model="admin.phone" placeholder="Phone number">
+            <button class="btn btn-primary" class="btn-signup" type="submit" name="signup" ng-click="signup(admin.username, admin.password, admin.fullname, admin.jmbg, admin.address, admin.email, admin.phone)">Submit</button>
         </form>
     </div>
     <script src="js/angular.js"></script>

@@ -97,6 +97,10 @@ myApp.controller('testController', function ($scope, $http){
         });
     };
 
+    $scope.studentSearch = function(searchParam){
+
+    };
+
     $scope.initElements();
 
 });

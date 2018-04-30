@@ -142,4 +142,21 @@ public class AdminService {
         }
         return "Admin already exists in a database";
     }
+
+    public String adminLogin(String username, String password){
+        con = ConnectionManager.getConnection();
+        try{
+            cStmt=con.prepareCall ("{ CALL loginAdmin_sp(?, ?, ?) }");
+            cStmt.setString(1,username);
+            cStmt.setString(2, password);
+            cStmt.registerOutParameter (3, Types.TINYINT);
+            cStmt.executeUpdate();
+            if(cStmt.getInt (3) == 1){
+                return "Success";
+            }
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return "Failed";
+    }
 }

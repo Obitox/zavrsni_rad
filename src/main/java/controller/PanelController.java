@@ -43,6 +43,9 @@ public class PanelController {
                                                                                           request.queryParams("fullname"),
                                                                                           request.queryParams("index"),
                                                                                           request.queryParams("address")));
-        options("/panel/data/options", (request, response) -> response.raw());
+        options("/panel/data/options", (request, response) -> request
+                .headers("Access-Control-Request-Headers"));
+
+        before((request, response) -> response.header("Access-Control-Allow-Origin", "/panel/data/options"));
     }
 }

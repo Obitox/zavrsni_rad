@@ -1,22 +1,65 @@
-html, body {
-    margin: 0;
+* {
     padding: 0;
-    height: 100%;
-    display: grid;
+    margin: 0;
 }
 
-.container {
+html, body {
+    margin: 0 auto;
+    width: 1400px;
+}
+
+.wrapper {
     margin: auto;
     display: grid;
-    grid-template: repeat(2, 1fr)/repeat(1, 1fr);
-    grid-gap: 2px;
+    grid-template-areas: "heading heading heading"
+                         "update-student update-student update-student"
+                         "create-student create-student create-student"
+                         "options options options";
+    grid-template-rows: min-content;
 }
 
-.heading {
+.wrapper h1 {
     align-self: center;
+    text-align: center;
+    grid-area: heading;
+}
+
+.main {
+    align-self: center;
+    grid-area: update-student;
+    display: grid;
+    grid-template-areas: "search"
+                         "student-table";
+    grid-template-rows: min-content;
+    grid-gap: 15px;
+}
+
+.main.search {
+    grid-area: search;
+}
+
+.main table {
+    grid-area: student-table;
+}
+
+
+/*TABLE*/
+.main table tr td button:first-child {
+    margin-right: 5px;
+}
+
+tr, th, td {
     text-align: center;
 }
 
-.list {
-    align-self: center;
+
+
+
+.create {
+    grid-area: create-student;
 }
+
+.wrapper button {
+    grid-area: options;
+}
+
