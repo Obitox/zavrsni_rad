@@ -1,14 +1,14 @@
-var myApp = angular.module('App', []);
+var indexApp = angular.module('indexApp', []);
 
-myApp.controller('testController', function ($scope, $http, $window){
+indexApp.controller('indexController', function ($scope, $http, $window){
 
-    $scope.login = function(){
+    $scope.login = function(username, password){
         $http({
             method: 'POST',
             url: 'http://localhost:4567/login',
             data: $.param({
-                username: $('#username').val(),
-                password: $('#password').val()
+                username: username,
+                password: password
             }),
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         }).then(function successCallback(response) {
@@ -16,10 +16,12 @@ myApp.controller('testController', function ($scope, $http, $window){
                 alert("Username or password is incorrect!")
             }
             else {
-                $window.location.href='http://localhost:4567/panel';
+                $window.location.href='/panel';
             }
         });
     };
 
-
+    $scope.redirect = function() {
+        $window.location.href='http://localhost:4567/registration';
+    }
 });

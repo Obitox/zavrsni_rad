@@ -1,6 +1,6 @@
-var myApp = angular.module('App', []);
+var panelController = angular.module('panelApp', []);
 
-myApp.controller('testController', function ($scope, $http){
+panelController.controller('panelController', function ($scope, $http, $window){
     $scope.list = [];
 
     $scope.id_copy = 0;
@@ -21,17 +21,6 @@ myApp.controller('testController', function ($scope, $http){
             $scope.list = response.data;
         });
 
-    };
-
-    $scope.copyValue = function(){
-        $scope.id_copy = $scope.student_id;
-        $scope.username_copy = $scope.username;
-        $scope.password_copy = $scope.password;
-        $scope.email_copy = $scope.email;
-        $scope.jmbg_copy = $scope.jmbg;
-        $scope.fullname_copy = $scope.fullname;
-        $scope.index_copy = $scope.index;
-        $scope.address_copy = $scope.address;
     };
 
     $scope.updateStudent = function(id, username, password, email, jmbg, fullname, index, address){
@@ -87,18 +76,14 @@ myApp.controller('testController', function ($scope, $http){
         });
     };
 
-    $scope.options = function(){
+    $scope.logout = function(){
         $http({
-            method: 'OPTIONS',
-            url: 'http://localhost:4567/panel/data/options',
+            method: 'GET',
+            url: 'http://localhost:4567/panel/logout',
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-        }).then(function succesCallback(response){
-            alert(response.data)
+        }).then(function successCallback(response) {
+            $window.location.href='/panel/logout';
         });
-    };
-
-    $scope.studentSearch = function(searchParam){
-
     };
 
     $scope.initElements();

@@ -24,3 +24,11 @@ body, html {
     grid-template: repeat(7, 1fr)/repeat(1, 1fr);
     grid-gap: 10px;
 }
+
+.signup input.ng-invalid.ng-touched {
+    background-color: #FA787E;
+}
+
+.signup input.ng-valid.ng-touched {
+    background-color: #78FA89;
+}

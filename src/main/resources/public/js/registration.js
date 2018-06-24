@@ -1,6 +1,6 @@
-var myApp = angular.module('App', []);
+var registrationApp = angular.module('registrationApp', []);
 
-myApp.controller('testController', function ($scope, $http, $window){
+registrationApp.controller('registrationController', function ($scope, $http, $window){
 
     $scope.signup = function(username, password, fullname, jmbg, address, email, phone){
         $http({
@@ -20,6 +20,4 @@ myApp.controller('testController', function ($scope, $http, $window){
             $window.location.href='http://localhost:4567/index';
         });
     };
-
-
 });

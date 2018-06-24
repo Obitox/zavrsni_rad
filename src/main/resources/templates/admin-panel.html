@@ -5,7 +5,7 @@
         <link rel="stylesheet" href="css/bootstrap-4.1.0-dist/css/bootstrap.css">
         <link rel="stylesheet" href="css/admin.css">
     </head>
-    <body ng-app="App" ng-controller="testController">
+    <body ng-app="panelApp" ng-controller="panelController">
         <div class="wrapper">
             <h1>
                 CRUD APP
@@ -62,7 +62,9 @@
                     </tr>
                 </table>
             </div>
-            <button class="btn btn-primary" type="submit" ng-click="options()">Get Options</button>
+            <div class="logout">
+                <button class="btn btn-primary" ng-click="logout()">Logout</button>
+            </div>
         </div>
         <script src="js/angular.js"></script>
         <script src="js/jquery-3.3.1.js"></script>

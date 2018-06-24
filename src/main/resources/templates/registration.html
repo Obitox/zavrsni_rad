@@ -6,18 +6,18 @@
     <link rel="stylesheet" type="text/css" href="css/registration.css">
     <title>Registration</title>
 </head>
-<body ng-app="App" ng-controller="testController">
+<body ng-app="registrationApp" ng-controller="registrationController">
     <div class="wrapper">
         <h1 class="heading">Enter your data in fitting boxes</h1>
-        <form class="signup">
-            <input class="form-control" type="text" id="username" ng-model="admin.username" placeholder="Username">
-            <input class="form-control" type="password" id="password" ng-model="admin.password" placeholder="Password">
-            <input class="form-control" type="text" id="fullname" ng-model="admin.fullname" placeholder="Full name">
-            <input class="form-control" type="text" id="jmbg" ng-model="admin.jmbg" placeholder="JMBG">
-            <input class="form-control" type="text" id="address" ng-model="admin.address" placeholder="Address">
-            <input class="form-control" type="email" id="email" ng-model="admin.email" placeholder="Email in format example@crud.rs">
-            <input class="form-control" type="text" id="phone" ng-model="admin.phone" placeholder="Phone number">
-            <button class="btn btn-primary" class="btn-signup" type="submit" name="signup" ng-click="signup(admin.username, admin.password, admin.fullname, admin.jmbg, admin.address, admin.email, admin.phone)">Submit</button>
+        <form class="signup" name="registrationForm">
+            <input class="form-control" type="text" name="username" id="username" ng-model="admin.username" placeholder="Username" required ng-pattern="/^[A-Za-z0-9]{6,14}$/">
+            <input class="form-control" type="password" id="password" ng-model="admin.password" placeholder="Password" required ng-pattern="/^[A-Za-z0-9]{8,14}$/">
+            <input class="form-control" type="text" id="fullname" ng-model="admin.fullname" placeholder="Full name" required ng-pattern="/^([A-Z\-a-z]{3,44}[ ]{1}[A-Z\-a-z]{3,45})+$/">
+            <input class="form-control" type="text" id="jmbg" ng-model="admin.jmbg" placeholder="Unique number located on your personal id card" required ng-pattern="/^[0-9]{13}$/">
+            <input class="form-control" type="text" id="address" ng-model="admin.address" placeholder="Address in format Street 14, City, Country" required ng-pattern="/^([A-Z]{1}[a-z\.]{1,43}[ ]{0,1})+([0-9]{1,4}[a-z]{0,1}),[ ]([A-Z]{1}[a-z]{2,48}[ ]{0,1})+,[ ]([A-Z]{1}[a-z]{3,48}[ ]{0,1})+$/">
+            <input class="form-control" type="email" id="email" ng-model="admin.email" placeholder="Email in format example@admin.rs" required ng-pattern="/^([a-z]\.?[0-9]{0,2})+@admin\.rs$/">
+            <input class="form-control" type="text" id="phone" ng-model="admin.phone" placeholder="Phone number" required ng-pattern="/^\+3816[0,1,4,3,5,6,9]{1}[0-9]{6,7}$/">
+            <button class="btn btn-primary" type="submit" name="signup" ng-disabled="registrationForm.$invalid" ng-click="signup(admin.username, admin.password, admin.fullname, admin.jmbg, admin.address, admin.email, admin.phone)">Submit</button>
         </form>
     </div>
     <script src="js/angular.js"></script>

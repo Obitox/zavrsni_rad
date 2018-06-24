@@ -11,10 +11,10 @@ html, body {
 .wrapper {
     margin: auto;
     display: grid;
-    grid-template-areas: "heading heading heading"
+    grid-template-areas: "heading        heading        heading"
                          "update-student update-student update-student"
                          "create-student create-student create-student"
-                         "options options options";
+                         "logout         logout         logout";
     grid-template-rows: min-content;
 }
 
@@ -52,14 +52,18 @@ tr, th, td {
     text-align: center;
 }
 
-
-
-
 .create {
     grid-area: create-student;
 }
 
-.wrapper button {
-    grid-area: options;
+.logout {
+    grid-area: logout;
+    align-self: center;
+    text-align: center;
+}
+
+.logout button {
+    width: 100%;
+    font-size: 20px;
 }
 

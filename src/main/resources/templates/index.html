@@ -6,18 +6,18 @@
     <link rel="stylesheet" type="text/css" href="css/index.css">
     <title>CRUD</title>
 </head>
-<body ng-app="App" ng-controller="testController">
+<body ng-app="indexApp" ng-controller="indexController">
     <div class="wrapper">
         <h1 class="login-heading">
             CRUD APPLICATION
         </h1>
         <div class="login-box">
-            <input class="username form-control" id="username" type="text" name="username" placeholder="Username">
-            <input class="password form-control" id="password" type="password" name="password" placeholder="Password">
-            <button class="login btn btn-primary" name="btn-login" ng-click="login()">
+            <input class="username form-control" name="username" id="username" type="text" ng-model="administrator.username" placeholder="Username">
+            <input class="password form-control" name="password" id="password" type="password" ng-model="administrator.password" placeholder="Password">
+            <button class="login btn btn-primary" name="btn-login" ng-click="login(administrator.username, administrator.password)">
                 Login
             </button>
-            <button  class="sign-up btn btn-primary" name="btn-signup">
+            <button  class="sign-up btn btn-primary" name="btn-signup" ng-click="redirect()">
                 Sign up
             </button>
         </div>

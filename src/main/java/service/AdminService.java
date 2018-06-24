@@ -23,7 +23,6 @@ public class AdminService {
         listOfAllStudents.clear();
         sql = "SELECT * FROM student";
         con = ConnectionManager.getConnection();
-        System.out.println("Con je:" + con);
         try {
             stmt = con.prepareStatement(sql);
             rs = stmt.executeQuery(sql);
@@ -117,13 +116,6 @@ public class AdminService {
 
     public String administratorRegistration(String username, String password, String fullname, String jmbg, String address, String email, String phone){
         con = ConnectionManager.getConnection();
-        System.out.println("Username:" + username);
-        System.out.println("password:" + password);
-        System.out.println("fullname:" + fullname);
-        System.out.println("jmbg:" + jmbg);
-        System.out.println("address:" + address);
-        System.out.println("email:" + email);
-        System.out.println("phone:" + phone);
         try {
             cStmt = con.prepareCall("{CALL createAdmin_sp(?, ?, ?, ?, ?, ?, ?)}");
             cStmt.setString(1, username);
@@ -158,5 +150,20 @@ public class AdminService {
             e.printStackTrace();
         }
         return "Failed";
+    }
+
+    public String getAdminId(String username){
+        con = ConnectionManager.getConnection();
+        try {
+            stmt = con.prepareStatement("SELECT administrator_id FROM administrator WHERE username = ?");
+            stmt.setString(1, username);
+            rs = stmt.executeQuery();
+            if(rs.next()){
+                return String.valueOf(rs.getInt("administrator_id"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return "";
     }
 }

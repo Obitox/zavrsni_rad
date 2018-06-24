@@ -9,9 +9,11 @@ import static spark.Spark.*;
 public class PanelController {
     private final AdminService adminService;
     private Render render;
+    private final String SESSION_NAME;
 
     public PanelController(){
         adminService = new AdminService();
+        this.SESSION_NAME = "user_id";
         initPanelController();
     }
 
@@ -25,16 +27,21 @@ public class PanelController {
 
     private void initPanelController(){
         render = new Render();
-        get("/panel", (request,response) -> render.renderContent("admin-panel.html"));
+        get("/panel", (request,response) -> {
+            if (request.session().attribute("user_id") == null) {
+                halt(401, render.renderContent("error.html"));
+            }
+            return render.renderContent("admin-panel.html");
+        });
         get("/panel/data", (request,response) -> new Gson().toJson(adminService.retrieveStudents()));
         put("/panel/data/update", (request,response) -> adminService.updateStudent( Integer.parseInt(request.queryParams("student_id")),
-                                                                                 request.queryParams("username"),
-                                                                                 request.queryParams("password"),
-                                                                                 request.queryParams("email"),
-                                                                                 request.queryParams("jmbg"),
-                                                                                 request.queryParams("fullname"),
-                                                                                 request.queryParams("index"),
-                                                                                 request.queryParams("address")));
+                                                                                                          request.queryParams("username"),
+                                                                                                          request.queryParams("password"),
+                                                                                                          request.queryParams("email"),
+                                                                                                          request.queryParams("jmbg"),
+                                                                                                          request.queryParams("fullname"),
+                                                                                                          request.queryParams("index"),
+                                                                                                          request.queryParams("address")));
         delete("/panel/data/delete/:student_id", (request,response) -> adminService.deleteStudent(Integer.parseInt(request.params(":student_id"))));
         post("/panel/data/create", (request, response) -> adminService.createStudent(request.queryParams("username"),
                                                                                           request.queryParams("password"),
@@ -43,9 +50,12 @@ public class PanelController {
                                                                                           request.queryParams("fullname"),
                                                                                           request.queryParams("index"),
                                                                                           request.queryParams("address")));
-        options("/panel/data/options", (request, response) -> request
-                .headers("Access-Control-Request-Headers"));
-
-        before((request, response) -> response.header("Access-Control-Allow-Origin", "/panel/data/options"));
+        get("/panel/logout", (request, response) -> {
+            if (request.session().attribute("user_id") == null) {
+                halt(401, render.renderContent("logout.html"));
+            }
+            request.session().removeAttribute(this.SESSION_NAME);
+            return render.renderContent("logout.html");
+        });
     }
 }
